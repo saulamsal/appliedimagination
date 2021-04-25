@@ -212,7 +212,18 @@ include "header.php";
                             occasion</span> </p>
                 </div>
                 <div class="max-width">
+
+
+
                     <div class="grid-wrapper">
+
+                        <div class="btn-group">
+                            <button class="btn btn-search active allBtnSelector">All</button>
+
+                            <button class="btn btn-search futureBtnSelector">In the Future</button>
+                            <button class="btn btn-search pastBtnSelector">In the Past</button>
+                        </div>
+
                         <div class="grid-container">
 
 
@@ -220,14 +231,20 @@ include "header.php";
                             <?php
                             if ($result->num_rows > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
+
+                                    $isDatePassed = 0;
+                                    if (strtotime($row['date']) < time()) {
+                                        $isDatePassed = 1;
+                                    }
+
                                     echo "
-                                              <div class='item zone' data-read-aloud-multi-block='true'>
+                                 <div class='item zone' data-read-aloud-multi-block='true' is-passed='{$isDatePassed}'>
                                 <p class='item-image'> <img src='{$row['eventimage']}' alt='Image'> </p>
                                 <figcaption><i class='fas fa-user padding-right-10'></i>{$row['hostname']} • {$row['eventlengthinhours']} hrs</figcaption>
                                 <p class='item-heading'> <span class='item-title'>
                                         {$row['name']}
                                     </span> <span class='item-details'>
-                                        {$row['date']} • {$row['location']}
+                                        <span>{$row['date']}</span> • {$row['location']}
                                     </span> </p>
                             </div>
 ";
@@ -239,30 +256,83 @@ include "header.php";
                             ?>
 
                             <script>
-                                $('#input-search').on('input', function(e) {
-                                    e.preventDefault();
-                                    var query = $("#input-search").val().toLowerCase();
-
-                                    $(".item.zone").hide();
-                                    $(".item.zone").each(function() {
-                                        var eventName = $(this).find('.item-title').text().toLowerCase(),
-                                            eventLocation = $(this).find('.item-details').text().toLowerCase();
-                                        // if (make.indexOf(query) > -1 || model.indexOf(query) > -1 || type.indexOf(query) > -1) {
-                                        $(this).show();
-                                        // }
+                                $(document).ready(function() {
+                                    $('#input-search').on('input', function(e) {
+                                        e.preventDefault();
+                                        var query = $("#input-search").val().toLowerCase();
+                                        $(".item.zone").each(function() {
+                                            var eventName = $(this).find('.item-title').text().toLowerCase();
+                                            var eventLocation = $(this).find('.item-details').text().toLowerCase();
+                                            console.log(`EventName: ${eventName} & Event Location: ${eventLocation} & query: ${query}`);
+                                            $(this).hide();
+                                            if (eventName.indexOf(query) > -1 || eventLocation.indexOf(query) > -1) {
+                                                $(this).show();
+                                            }
+                                            // else {
+                                            //     $(".item.zone").each(function() {
+                                            //         $(this).show();
+                                            //     });
+                                            // }
+                                        });
                                     });
+
+
+                                    $(".pastBtnSelector").click(function() {
+                                        $(".item.zone").each(function() {
+                                            var isPassed = $(this).attr('is-passed');
+                                            if (isPassed == "0") {
+                                                $(this).hide();
+                                            } else {
+                                                $(this).show();
+                                            }
+                                        });
+                                    });
+
+
+                                    $(".futureBtnSelector").click(function() {
+                                        $(".item.zone").each(function() {
+                                            var isPassed = $(this).attr('is-passed');
+                                            if (isPassed == "1") {
+                                                $(this).hide();
+                                            } else {
+                                                $(this).show();
+                                            }
+                                        });
+                                    });
+
+
+                                    $(".allBtnSelector").click(function() {
+                                        $(".item.zone").each(function() {
+                                            $(this).show();
+                                        });
+                                    });
+
+
+
+
+
+
                                 });
+
+
+
+                                function resetAllEventView() {
+                                    $(".item.zone").each(function() {
+                                        $(this).show();
+                                    });
+                                }
                             </script>
 
+
+
                         </div>
-                        <div class="text-center margin-top-15 margin-bottom-70"> <a href="/" class="main-color pager">
+
+                        <div class="text-center margin-top-15 margin-bottom-70" style="grid-row: none;"> <a href="/" class="main-color pager">
                                 View More (100+)
                             </a> </div>
+
                         <aside class="side">
-                            <div class="btn-group">
-                                <button class="btn btn-search active">In the Future</button>
-                                <button class="btn btn-search">In the Past</button>
-                            </div>
+
                             <div class="input-icons"> <i class="fas fa-search main-color"></i>
                                 <input class="input-search" type="text" id="input-search" placeholder="Search by name or location..." autocomplete="off" name="input-search">
                             </div>
@@ -306,6 +376,9 @@ include "header.php";
                             <div id="slider"></div>
                         </aside>
                     </div>
+
+
+
                 </div>
             </div>
         </main>
