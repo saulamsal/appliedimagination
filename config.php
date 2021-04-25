@@ -4,9 +4,9 @@ class config
 {
     function __construct()
     {
-        $this->host = "localhost";
-        $this->user  = "root";
-        $this->pass = "welcome";
-        $this->db = "mydb13";
+        $this->host = getenv("HOST");
+        $this->user  = getenv("DATABASE");
+        $this->pass = getenv("USERNAME");
+        $this->db = getenv("PASSWORD");
     }
 }
