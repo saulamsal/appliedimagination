@@ -238,7 +238,7 @@ include "header.php";
                                     }
 
                                     echo "
-                                 <div class='item zone' data-read-aloud-multi-block='true' cost='{$row['seatcost']}' is-passed='{$isDatePassed}'>
+                                 <div class='item zone' data-read-aloud-multi-block='true' eventsize='{$row['eventsize']}' cost='{$row['seatcost']}' is-passed='{$isDatePassed}'>
                                 <p class='item-image'> <img src='{$row['eventimage']}' alt='Image'> </p>
                                 <figcaption><i class='fas fa-user padding-right-10'></i>{$row['hostname']} • {$row['eventlengthinhours']} hrs</figcaption>
                                 <p class='item-heading'> <span class='item-title'>
@@ -254,113 +254,6 @@ include "header.php";
                                 echo "<p class='lead'><em>No events were found.</em></p>";
                             }
                             ?>
-
-                            <script>
-                                $(document).ready(function() {
-                                    $('#input-search').on('input', function(e) {
-                                        e.preventDefault();
-                                        var query = $("#input-search").val().toLowerCase();
-                                        $(".item.zone").each(function() {
-                                            var eventName = $(this).find('.item-title').text().toLowerCase();
-                                            var eventLocation = $(this).find('.item-details').text().toLowerCase();
-                                            console.log(`EventName: ${eventName} & Event Location: ${eventLocation} & query: ${query}`);
-                                            $(this).fadeOut();
-                                            if (eventName.indexOf(query) > -1 || eventLocation.indexOf(query) > -1) {
-                                                $(this).fadeIn();
-                                            }
-                                            // else {
-                                            //     $(".item.zone").each(function() {
-                                            //         $(this).fadeIn();
-                                            //     });
-                                            // }
-                                        });
-                                    });
-
-
-                                    $('#location').on('change', function(e) {
-                                        var valueSelected = this.value;
-                                        $(".item.zone").each(function() {
-                                            // var optionSelected = $("option:selected", this);
-                                            var eventLocation = $(this).find('.item-details').text().toLowerCase();
-                                            $(this).fadeOut();
-                                            if (eventLocation.indexOf(valueSelected.toLowerCase()) > -1) {
-                                                $(this).fadeIn();
-                                            } else if (valueSelected == "all") {
-                                                $(this).fadeIn();
-                                            }
-                                        });
-
-                                    });
-
-
-                                    $('.cost-input').on('change', function(e) {
-                                        var minValue = $('#mincost').val() || 0;
-                                        var maxValue = $('#maxcost').val() || Number.MAX_SAFE_INTEGER;
-
-                                        $(".item.zone").each(function() {
-                                            var eventCost = $(this).attr('cost');
-                                            $(this).fadeOut();
-                                            if (inRange(eventCost, minValue, maxValue)) {
-                                                $(this).fadeIn();
-                                            }
-                                        });
-
-                                    });
-
-
-
-
-                                    $(".pastBtnSelector").click(function() {
-                                        $(".item.zone").each(function() {
-                                            var isPassed = $(this).attr('is-passed');
-                                            if (isPassed == "0") {
-                                                $(this).fadeOut();
-                                            } else {
-                                                $(this).fadeIn();
-                                            }
-                                        });
-                                    });
-
-
-                                    $(".futureBtnSelector").click(function() {
-                                        $(".item.zone").each(function() {
-                                            var isPassed = $(this).attr('is-passed');
-                                            if (isPassed == "1") {
-                                                $(this).fadeOut();
-                                            } else {
-                                                $(this).fadeIn();
-                                            }
-                                        });
-                                    });
-
-
-                                    $(".allBtnSelector").click(function() {
-                                        $(".item.zone").each(function() {
-                                            $(this).fadeIn();
-                                        });
-                                    });
-
-
-
-                                    function resetAllEventView() {
-                                        $(".item.zone").each(function() {
-                                            $(this).fadeIn();
-                                        });
-                                    }
-
-
-
-
-
-
-
-
-                                });
-
-                                function inRange(x, min, max) {
-                                    return ((x - min) * (x - max) <= 0);
-                                }
-                            </script>
 
 
 
@@ -450,6 +343,12 @@ include "header.php";
                     decimals: 0
                 })
             });
+
+
+
+
+
+
             $('.btn-search').on('click', function() {
                 $('.btn-search').removeClass('active');
                 $(this).addClass('active');
@@ -462,6 +361,149 @@ include "header.php";
                 } /* speed */ );
             });
         });
+
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function() {
+            $('#input-search').on('input', function(e) {
+                e.preventDefault();
+                var query = $("#input-search").val().toLowerCase();
+                $(".item.zone").each(function() {
+                    var eventName = $(this).find('.item-title').text().toLowerCase();
+                    var eventLocation = $(this).find('.item-details').text().toLowerCase();
+                    console.log(`EventName: ${eventName} & Event Location: ${eventLocation} & query: ${query}`);
+                    $(this).fadeOut();
+                    if (eventName.indexOf(query) > -1 || eventLocation.indexOf(query) > -1) {
+                        $(this).fadeIn();
+                    }
+                    // else {
+                    //     $(".item.zone").each(function() {
+                    //         $(this).fadeIn();
+                    //     });
+                    // }
+                });
+            });
+
+
+            $('#location').on('change', function(e) {
+                var valueSelected = this.value;
+                $(".item.zone").each(function() {
+                    // var optionSelected = $("option:selected", this);
+                    var eventLocation = $(this).find('.item-details').text().toLowerCase();
+                    $(this).fadeOut();
+                    if (eventLocation.indexOf(valueSelected.toLowerCase()) > -1) {
+                        $(this).fadeIn();
+                    } else if (valueSelected == "all") {
+                        $(this).fadeIn();
+                    }
+                });
+
+            });
+
+
+            $('.cost-input').on('change', function(e) {
+                var minValue = $('#mincost').val() || 0;
+                var maxValue = $('#maxcost').val() || Number.MAX_SAFE_INTEGER;
+
+                $(".item.zone").each(function() {
+                    var eventCost = $(this).attr('cost');
+                    $(this).fadeOut();
+                    if (inRange(eventCost, minValue, maxValue)) {
+                        $(this).fadeIn();
+                    }
+                });
+
+            });
+
+
+
+
+
+
+            $(slider).on('click', function() {
+                requestedEventSize = slider.noUiSlider.get();
+                $(".item.zone").each(function() {
+                    var eventSize = $(this).attr('eventsize');
+                    $(this).fadeOut();
+                    if (inRange(eventSize, requestedEventSize[0], requestedEventSize[1])) {
+                        $(this).fadeIn();
+                    }
+                });
+
+
+            });
+
+
+
+
+
+            $(".noUi-handle-lower").bind('change', function(e) {
+                //just grabbing some values to show.
+                alert($(this).attr('aria-valuenow'), $(this).attr('aria-valuemax'));
+                e.preventDefault();
+            })
+
+
+
+
+            $(".pastBtnSelector").click(function() {
+                $(".item.zone").each(function() {
+                    var isPassed = $(this).attr('is-passed');
+                    if (isPassed == "0") {
+                        $(this).fadeOut();
+                    } else {
+                        $(this).fadeIn();
+                    }
+                });
+            });
+
+
+            $(".futureBtnSelector").click(function() {
+                $(".item.zone").each(function() {
+                    var isPassed = $(this).attr('is-passed');
+                    if (isPassed == "1") {
+                        $(this).fadeOut();
+                    } else {
+                        $(this).fadeIn();
+                    }
+                });
+            });
+
+
+            $(".allBtnSelector").click(function() {
+                $(".item.zone").each(function() {
+                    $(this).fadeIn();
+                });
+            });
+
+
+
+            function resetAllEventView() {
+                $(".item.zone").each(function() {
+                    $(this).fadeIn();
+                });
+            }
+
+
+
+
+
+
+
+
+        });
+
+        function inRange(x, min, max) {
+            return ((x - min) * (x - max) <= 0);
+        }
     </script>
 </body>
 
