@@ -1,0 +1,573 @@
+body,
+html {
+  margin: 0;
+  height: 100%;
+  font-family: "Montserrat";
+  font-size: 14px;
+}
+
+input,
+select,
+button {
+  font-family: "Montserrat";
+  font-weight: bold;
+}
+
+label {
+  color: darkgrey;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+header hr,
+main hr {
+  border-color: #f5f5f5;
+  border-top: 1px;
+  margin: 0;
+}
+
+main {
+  margin-bottom: auto;
+  margin-top: 60px;
+}
+
+select {
+  border-width: 0;
+  outline: 0;
+  background-color: transparent;
+  border-bottom: 2px solid #fb5f53;
+}
+
+.container {
+  min-height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.max-width {
+  max-width: 1100px;
+  margin: 0 auto;
+  float: none;
+}
+
+/* Header CSS */
+.main-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 50px;
+  padding-left: 20px;
+}
+
+.logo {
+  width: 160px;
+  margin: 0;
+}
+
+.main-nav ul {
+  text-align: center;
+}
+.main-nav li {
+  display: inline;
+}
+.main-nav a {
+  display: inline-block;
+  padding: 0em 1em;
+}
+
+.main-nav-list {
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav a {
+  font-weight: bold;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.main-color,
+a:hover {
+  color: #fb5f53;
+}
+
+/* Main section top of website */
+.home-header-title {
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  margin-top: 0.25em;
+}
+
+.home-events-title {
+  flex-wrap: wrap;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.equalHMWrap {
+  justify-content: space-between;
+  margin-bottom: 110px;
+}
+
+.eqWrap {
+  display: flex;
+}
+
+.equalHMV {
+  width: 47%;
+  margin: 0%;
+  overflow: hidden;
+}
+
+.top-graphic {
+  position: absolute;
+  background-image: url("../images/top-graphic.png");
+  height: 400px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  right: 0;
+  overflow: hidden;
+}
+
+/*Buttons and inputs */
+.btn {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 9px 16px;
+  margin-bottom: 0;
+  border-radius: 4px;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+}
+.btn:focus,
+.btn:active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-group {
+  border-radius: 24px;
+  border-color: gray;
+  background-color: #fff;
+  padding: 4px;
+  min-width: 95%;
+}
+
+/* btn search */
+.btn-search {
+  border-radius: 24px;
+  min-width: 49%;
+  color: #fb5f53;
+  background-color: #fff;
+}
+
+.btn-group .active {
+  color: #fff;
+  background-color: #fb5f53;
+  border-color: #ccc;
+}
+
+.btn-search:focus,
+.btn-search:active:focus {
+  color: #fff;
+  border-radius: 24px;
+  background-color: #fb5f53;
+  border-color: darkgray;
+  outline: 0;
+}
+
+.btn-search:hover {
+  background-color: #ff331c;
+  color: #fff;
+}
+
+/* btn default used in find event */
+.btn-default {
+  color: #fff;
+  background-color: #fb5f53;
+  border-color: #ccc;
+}
+.btn-default:focus {
+  color: #fff;
+  background-color: #ff331c;
+  border-color: #ccc;
+  outline: 0;
+}
+.btn-default:hover {
+  color: #fff;
+  background-color: #ff331c;
+  border-color: #ccc;
+}
+.btn-default:active {
+  color: #fff;
+  background-color: #ff331c;
+  border-color: #ccc;
+}
+
+/* search */
+.input-icons {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-icons i {
+  position: absolute;
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.input-search {
+  line-height: 2.3em;
+  border-radius: 24px;
+  border-color: #ccc;
+  outline: 0;
+  padding-left: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* seat cost input */
+.input-cost {
+  position: relative;
+}
+
+.input-cost:before {
+  position: absolute;
+  top: 0;
+  content: "$";
+  color: #fb5f53;
+  font-weight: bold;
+}
+
+.input-cost.left:before {
+  left: 10px;
+}
+
+.input-min-cost,
+.input-max-cost {
+  line-height: 2.3em;
+  border-radius: 24px;
+  border-color: #ccc;
+  outline: 0;
+  padding-left: 0px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.lblto {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Events Grid */
+.grid-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "container-grid  sidebar";
+}
+
+.grid-wrapper > * {
+  border-radius: 5px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.side {
+  display: grid;
+  padding-left: 20px;
+  grid-gap: 15px;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  height: 25px;
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: "container-grid";
+}
+
+.zone {
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s linear;
+}
+
+figcaption {
+  margin-top: -25px;
+  background-color: rgb(0, 0, 0, 0.4);
+  padding: 5px 20px;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.zone:hover {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px,
+    inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px,
+    inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
+  -o-box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px,
+    inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px,
+    inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
+}
+
+.pager {
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 70px;
+}
+
+/* Events - box under picture  */
+.item {
+  display: flex;
+  flex: 1 1 33.33%;
+  flex-direction: column;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.item-heading {
+  height: 5.5em;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0 10px;
+  background-color: #fff;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  overflow: hidden;
+}
+
+.item-image {
+  margin: 0;
+}
+
+.item-image img {
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  display: block;
+}
+
+.item-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 8px 0px;
+  margin-right: 10px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.item-title:after {
+  content: "\A";
+  white-space: pre;
+}
+
+.item-details {
+  color: darkgray;
+  padding-bottom: 12px;
+  white-space: nowrap;
+}
+
+/* Footer css */
+footer {
+  display: flex;
+  padding: 30px 20px;
+  justify-content: space-between;
+  color: gray;
+  font-size: 13px;
+}
+
+footer i {
+  color: gray;
+  font-size: 17px;
+}
+
+footer hr {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: -30px;
+  border-color: #f5f5f5;
+  border-top: 1px;
+}
+
+/* Helpers */
+.text-center {
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.background-color-gray {
+  background-color: #f5f5f5;
+}
+
+.paddingBlock {
+  padding: 0px 20px;
+}
+
+.padding-right-10 {
+  padding-right: 10px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-right-30 {
+  margin-right: 30px;
+}
+
+.margin-top-8 {
+  margin-top: 8px;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+.margin-bottom-70 {
+  margin-bottom: 70px;
+}
+
+.lines-spacing {
+  line-height: 1.7em;
+}
+
+/* Fixes when screen is smaller */
+@media (max-width: 850px) {
+  header {
+    font-size: 13px;
+  }
+
+  .main-nav a {
+    padding: 0em 0.5em;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .margin-right-30 {
+    margin-right: 1px;
+  }
+
+  .grid-wrapper {
+    padding-left: 20px;
+  }
+}
+
+/* Slide Range CSS */
+.noUi-horizontal .noUi-tooltip {
+  bottom: -43px;
+}
+
+.noUi-tooltip {
+  width: 45px;
+  background-color: #fb5f53;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.noUi-handle {
+  border-radius: 10px;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px;
+  height: 20px;
+  outline: 0;
+  top: -9px;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  position: unset;
+  display: none;
+}
+
+.noUi-horizontal {
+  height: 3.5px;
+}
+
+.noUi-connect {
+  background-color: #fb5f53;
+}
+
+.noUi-tooltip:after,
+.noUi-horizontal .noUi-tooltip :before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.noUi-tooltip:after {
+  border-top: none;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #fb5f53;
+  border-width: 8px;
+  right: 13px;
+  top: -8px;
+}
