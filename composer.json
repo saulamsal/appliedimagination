@@ -1,0 +1,12 @@
+{
+    "name": "lamsa/appliedimagination",
+    "authors": [
+        {
+            "name": "saulamsal",
+            "email": "saulamsal@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
