@@ -238,7 +238,7 @@ include "header.php";
                                     }
 
                                     echo "
-                                 <div class='item zone' data-read-aloud-multi-block='true' is-passed='{$isDatePassed}'>
+                                 <div class='item zone' data-read-aloud-multi-block='true' cost='{$row['seatcost']}' is-passed='{$isDatePassed}'>
                                 <p class='item-image'> <img src='{$row['eventimage']}' alt='Image'> </p>
                                 <figcaption><i class='fas fa-user padding-right-10'></i>{$row['hostname']} • {$row['eventlengthinhours']} hrs</figcaption>
                                 <p class='item-heading'> <span class='item-title'>
@@ -264,26 +264,59 @@ include "header.php";
                                             var eventName = $(this).find('.item-title').text().toLowerCase();
                                             var eventLocation = $(this).find('.item-details').text().toLowerCase();
                                             console.log(`EventName: ${eventName} & Event Location: ${eventLocation} & query: ${query}`);
-                                            $(this).hide();
+                                            $(this).fadeOut();
                                             if (eventName.indexOf(query) > -1 || eventLocation.indexOf(query) > -1) {
-                                                $(this).show();
+                                                $(this).fadeIn();
                                             }
                                             // else {
                                             //     $(".item.zone").each(function() {
-                                            //         $(this).show();
+                                            //         $(this).fadeIn();
                                             //     });
                                             // }
                                         });
                                     });
 
 
+                                    $('#location').on('change', function(e) {
+                                        var valueSelected = this.value;
+                                        $(".item.zone").each(function() {
+                                            // var optionSelected = $("option:selected", this);
+                                            var eventLocation = $(this).find('.item-details').text().toLowerCase();
+                                            $(this).fadeOut();
+                                            if (eventLocation.indexOf(valueSelected.toLowerCase()) > -1) {
+                                                $(this).fadeIn();
+                                            } else if (valueSelected == "all") {
+                                                $(this).fadeIn();
+                                            }
+                                        });
+
+                                    });
+
+
+                                    $('.cost-input').on('change', function(e) {
+                                        var minValue = $('#mincost').val() || 0;
+                                        var maxValue = $('#maxcost').val() || Number.MAX_SAFE_INTEGER;
+
+                                        $(".item.zone").each(function() {
+                                            var eventCost = $(this).attr('cost');
+                                            $(this).fadeOut();
+                                            if (inRange(eventCost, minValue, maxValue)) {
+                                                $(this).fadeIn();
+                                            }
+                                        });
+
+                                    });
+
+
+
+
                                     $(".pastBtnSelector").click(function() {
                                         $(".item.zone").each(function() {
                                             var isPassed = $(this).attr('is-passed');
                                             if (isPassed == "0") {
-                                                $(this).hide();
+                                                $(this).fadeOut();
                                             } else {
-                                                $(this).show();
+                                                $(this).fadeIn();
                                             }
                                         });
                                     });
@@ -293,9 +326,9 @@ include "header.php";
                                         $(".item.zone").each(function() {
                                             var isPassed = $(this).attr('is-passed');
                                             if (isPassed == "1") {
-                                                $(this).hide();
+                                                $(this).fadeOut();
                                             } else {
-                                                $(this).show();
+                                                $(this).fadeIn();
                                             }
                                         });
                                     });
@@ -303,9 +336,19 @@ include "header.php";
 
                                     $(".allBtnSelector").click(function() {
                                         $(".item.zone").each(function() {
-                                            $(this).show();
+                                            $(this).fadeIn();
                                         });
                                     });
+
+
+
+                                    function resetAllEventView() {
+                                        $(".item.zone").each(function() {
+                                            $(this).fadeIn();
+                                        });
+                                    }
+
+
 
 
 
@@ -314,12 +357,8 @@ include "header.php";
 
                                 });
 
-
-
-                                function resetAllEventView() {
-                                    $(".item.zone").each(function() {
-                                        $(this).show();
-                                    });
+                                function inRange(x, min, max) {
+                                    return ((x - min) * (x - max) <= 0);
                                 }
                             </script>
 
@@ -340,8 +379,9 @@ include "header.php";
                                 <label for="location">Event Location</label>
                                 <div class="float-right">
                                     <select name="location" id="location">
-                                        <option value="atl-GA">Atlanta, GA</option>
-                                        <option value="mia-FL">Miami, FL</option>
+                                        <option value="all">Everywhere</option>
+                                        <option value="Atlanta">Atlanta, GA</option>
+                                        <option value="Miami">Miami, FL</option>
                                     </select>
                                 </div>
                             </div>
@@ -364,10 +404,10 @@ include "header.php";
                             </div>
                             <div class="text-right">
                                 <label class="float-left margin-top-8 lblseat-cost" for="mincost">Seat Cost</label> <span class="input-cost left">
-                                    <input class="input-min-cost" type="text" id="mincost" name="mincost" size="7" maxlength="5" placeholder="Min" autocomplete="off">
+                                    <input class="input-min-cost cost-input" type="text" id="mincost" name="mincost" size="7" maxlength="5" placeholder="Min" autocomplete="off">
                                 </span>
                                 <label class="lblto" for="maxcost">to</label> <span class="input-cost left">
-                                    <input class="input-max-cost" type="text" id="maxcost" name="maxcost" size="7" maxlength="5" placeholder="Max" autocomplete="off">
+                                    <input class="input-max-cost cost-input" type="text" id="maxcost" name="maxcost" size="7" maxlength="5" placeholder="Max" autocomplete="off">
                                 </span>
                             </div>
                             <div>
