@@ -25,4 +25,9 @@ class EventsController
         $result = $this->objsm->selectRecord(0);
         include "view/home.php";
     }
+
+    // public function filteredData()
+    // {
+
+    // }
 }

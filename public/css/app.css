@@ -365,6 +365,7 @@ figcaption {
   flex-direction: column;
   margin-bottom: 10px;
   overflow: hidden;
+  background: #fff;
 }
 
 .item-heading {
