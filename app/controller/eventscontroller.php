@@ -1,5 +1,5 @@
 <?php
-require 'model/eventsModel.php';
+require './app/model/eventsModel.php';
 require_once 'config.php';
 
 session_status() === PHP_SESSION_ACTIVE ? TRUE : session_start();

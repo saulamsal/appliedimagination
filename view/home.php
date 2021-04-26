@@ -1,6 +1,6 @@
 <?php
 session_unset();
-include "header.php";
+// include "header.php";
 ?>
 
 
@@ -180,14 +180,6 @@ include "header.php";
 <body data-new-gr-c-s-check-loaded="14.1007.0" data-gr-ext-installed="">
     <div class="container">
         <div id="header">
-            <header class="main-header">
-                <div class="wrapper max-width">
-                    <h1 class="logo">
-                        <a href="../public/images/logo.svg"><img src="../public/images/logo.svg" height="auto" alt="Logo"></a>
-                    </h1>
-                </div>
-                <hr>
-            </header>
         </div>
         <main>
             <div class="equalHMWrap eqWrap max-width">
@@ -316,11 +308,6 @@ include "header.php";
             </div>
         </main>
         <div id="footer">
-            <footer class="max-width">
-                <hr>
-                <div> Copyright © Motivational Speakers, LLC All Rights Reserved. </div>
-                <div> <a class="margin-right-10" href="/" title="Twitter"><i class="fab fa-twitter"></i></a> <a class="margin-right-10" href="/" title="Facebook"><i class="fab fa-facebook-f"></i></a> <a href="/"><i class="fab fa-linkedin-in" title="LinkedIn"></i></a> </div>
-            </footer>
         </div>
     </div>
     <script>
@@ -343,7 +330,6 @@ include "header.php";
                     decimals: 0
                 })
             });
-
 
 
 
@@ -535,5 +521,5 @@ include "header.php";
 
 
 <?php
-include "footer.php";
+// include "footer.php";
 ?>
