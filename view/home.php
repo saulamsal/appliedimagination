@@ -240,7 +240,7 @@ include "header.php";
                                     echo "
                                  <div class='item zone' data-read-aloud-multi-block='true' eventsize='{$row['eventsize']}' cost='{$row['seatcost']}' is-passed='{$isDatePassed}'>
                                 <p class='item-image'> <img src='{$row['eventimage']}' alt='Image'> </p>
-                                <figcaption><i class='fas fa-user padding-right-10'></i>{$row['hostname']} • {$row['eventlengthinhours']} hrs</figcaption>
+                                <figcaption><i class='fas fa-user padding-right-10'></i>{$row['hostname']} • <span class='duration-in-hr'>{$row['eventlengthinhours']}</span> hrs</figcaption>
                                 <p class='item-heading'> <span class='item-title'>
                                         {$row['name']}
                                     </span> <span class='item-details'>
@@ -259,9 +259,9 @@ include "header.php";
 
                         </div>
 
-                        <div class="text-center margin-top-15 margin-bottom-70" style="grid-row: none;"> <a href="/" class="main-color pager">
+                        <!-- <div class="text-center margin-top-15 margin-bottom-70" style="grid-row: none;"> <a href="/" class="main-color pager">
                                 View More (100+)
-                            </a> </div>
+                            </a> </div> -->
 
                         <aside class="side">
 
@@ -291,7 +291,7 @@ include "header.php";
                                     <select class="select-lenght" name="length-end" id="length-end">
                                         <option value="2">2 hours</option>
                                         <option value="3">3 hours</option>
-                                        <option value="4">4 hours</option>
+                                        <option value="4" selected>4 hours</option>
                                     </select>
                                 </div>
                             </div>
@@ -407,6 +407,28 @@ include "header.php";
                 });
 
             });
+
+
+
+
+
+
+            $('.select-lenght').on('change', function(e) {
+                var minHour = $('#length-start').val() || 0;
+                var maxHour = $('#length-end').val() || Number.MAX_SAFE_INTEGER;
+
+                $(".item.zone").each(function() {
+                    var eventHours = $(this).find('.duration-in-hr').text().toLowerCase();
+
+                    $(this).fadeOut();
+                    if (inRange(eventHours, minHour, maxHour)) {
+                        $(this).fadeIn();
+                    }
+                });
+
+            });
+
+
 
 
             $('.cost-input').on('change', function(e) {

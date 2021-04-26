@@ -4,6 +4,8 @@ html {
   height: 100%;
   font-family: "Montserrat";
   font-size: 14px;
+}
+body {
   overflow-x: hidden;
 }
 
