@@ -31,7 +31,7 @@ class eventsModel
         try {
             $this->open_db();
 
-            $query = $this->condb->prepare("SELECT * FROM events");
+            $query = $this->condb->prepare("SELECT * FROM `events` WHERE `events`.`active` LIKE 'y' ORDER BY `events`.`showorder` ASC");
 
             $query->execute();
             $res = $query->get_result();
